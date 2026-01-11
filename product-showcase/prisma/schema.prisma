@@ -1,0 +1,114 @@
+// 1. DATASOURCE
+// Yeh batata hai ki database kaunsa hai (PostgreSQL, MySQL, SQLite, MongoDB)
+// aur uska URL kahan se milega (.env file se).
+datasource db {
+  provider = "postgresql" // Database Type: 'postgresql', 'mysql', 'sqlite', 'mongodb'
+  url      = env("DATABASE_URL")
+}
+
+// 2. GENERATOR
+// Yeh Prisma Client generate karta hai taaki aap JavaScript/TypeScript mein
+// database se baat kar sakein (e.g., db.user.findMany())
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 3. MODELS (Tables)
+// Har "model" database mein ek Table banata hai.
+
+// User Model
+model User {
+  // Fields (Columns) define karne ka tarika:
+  // name Type Modifiers Attributes
+
+  id        Int      @id @default(autoincrement()) // Primary Key (1, 2, 3...)
+  email     String   @unique                       // Unique hona chahiye
+  name      String?                                // '?' ka matlab Optional (NULL allowed)
+  password  String   // Required fiel
+  
+  // Enums (Fixed Values)
+  role      Role     @default(USER)               // Default value 'USER' hogi
+  
+  // Relations (Dusre tables se rishta)
+  orders    Order[]                               // Ek User ke multiple Orders ho sakte hain
+  
+  // Default Time Fields
+  createdAt DateTime @default(now())               // Record kab bana
+  updatedAt DateTime @updatedAt                    // Record kab update hua
+}
+
+// Product Model
+model Product {
+  id          String   @id @default(uuid())        // UUID (e.g., 'a1b2-c3d4...')
+  name        String
+  description String?
+  price       Decimal  @db.Decimal(10, 2)          // Exact decimal value currency ke liye
+  inStock     Boolean  @default(true)
+  
+  // Relation: Product kis Order mein hai?
+  orderItems  OrderItem[]
+  
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
+
+  createdAt   DateTime @default(now())
+}
+
+// Order Model
+model Order {
+  id        Int         @id @default(autoincrement())
+  status    OrderStatus @default(PENDING)
+  total     Decimal
+  
+  // Relation with User (One-to-Many)
+  // Yeh Order kis User ka hai?
+  user      User     @relation(fields: [userId], references: [id]) // 'userId' field 'User.id' se match karega
+  userId    Int
+  
+  // Relation with Products (via OrderItem)
+  items     OrderItem[]
+  
+  createdAt DateTime @default(now())
+}
+
+// Many-to-Many Relation Helper Table (Order aur Product ke beech)
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  quantity  Int
+  price     Decimal // Price at time of purchase
+  
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
+}
+
+// 4. ENUMS (Fixed Options)
+// Sirf yehi values allowed hongi
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+// --------- SHORTCUTS CHEAT SHEET ---------
+// @id          -> Primary Key banata hai
+// @default(...) -> Agar value na de toh kya automatically bhare
+// @unique      -> Duplicate values allowed nahi (e.g. Email)
+// ? (Question) -> Optional field (Null allowed)
+// [] (Array)   -> Relation mein multiple items (One-to-Many)
+// @relation    -> Do tables ko jodna (Foreign Key)
+// now()        -> Current timestamp
+// uuid()       -> Random Unique ID generator
