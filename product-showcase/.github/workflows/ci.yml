@@ -1,0 +1,41 @@
+name: Product Showcase CI/CD
+
+# Kab chalega yeh workflow?
+on:
+  push:
+    branches: ["main", "master"] # Jab main branch par push hoga
+  pull_request:
+    branches: ["main", "master"] # Jab koi PR banayega
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Cloud machine (runner)
+
+    steps:
+      # 1. Code checkout (repo se code lena)
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Node.js setup karna
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # 3. Dependencies install karna
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. Project Check (Linting - code errors nikalne ke liye)
+      - name: Run Linting
+        run: npm run lint
+        continue-on-error: true # Agar lint fail ho tab bhi aage badho (demo ke liye)
+
+      # 5. Build banana (Production ready code)
+      - name: Build Project
+        run: npm run build
+
+    # Test step (agar tests hote toh yahan aate)
+    # - name: Run Tests
+    #   run: npm test
