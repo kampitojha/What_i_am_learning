@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from './components/ProductCard';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import TailwindExplainCard from './components/TailwindExplainCard';
 
 const products = [
   {
@@ -67,6 +68,12 @@ function App() {
               <ProductCard {...product} />
             </div>
           ))}
+        </div>
+
+        {/* Tailwind Demo Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Tailwind Concept Demo</h2>
+          <TailwindExplainCard />
         </div>
 
         {/* CTA Button */}
