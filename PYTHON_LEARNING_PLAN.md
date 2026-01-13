@@ -194,3 +194,43 @@ _Goal: Share your code with the world._
 2.  **Stage 2: The Builder** (Phase 4 or 6) - Build APIs or Automations. Learn Databases.
 3.  **Stage 3: The Pro** (Phase 0, 3, 8) - Add Types, Tests, Linting, Docker, CI/CD.
 4.  **Stage 4: The Specialist** (Phase 5, or Advanced Systems) - ML/AI or High-Scale Architecture.
+
+---
+
+## 🦜 LangChain vs 🕸️ LangGraph (Simple Explanation)
+
+_Goal: Understand the difference between these two popular AI libraries._
+
+### 1. The Short Answer
+
+- **LangChain**: Build a straightforward **Chain** (Step 1 -> Step 2 -> Step 3).
+- **LangGraph**: Build a complex **Loop/Brain** (Step 1 -> Check Result -> If bad, go back to Step 1 -> Else, Step 2).
+
+### 2. The Simple Analogy
+
+Imagine you are a Chef cooking a recipe.
+
+- **LangChain (The Recipe Card)**:
+
+  1.  Chop Onions.
+  2.  Boil Water.
+  3.  Add Pasta.
+
+  - _You just follow the list linearly. You don't ask "Is the water boiling?", you just assume it is._
+
+- **LangGraph (The Smart Chef)**:
+  1.  Chop Onions.
+  2.  Boil Water.
+  3.  **DECISION**: Is the water boiling yet?
+      - _No?_ -> Wait 1 minute and check again (Loop).
+      - _Yes?_ -> Add Pasta.
+  - _It can think, loop back, and change the plan based on what happens._
+
+### 3. When to use which?
+
+| Feature        | LangChain               | LangGraph                          |
+| :------------- | :---------------------- | :--------------------------------- |
+| **Logic**      | Linear (A -> B -> C)    | Cyclic (A -> B -> A -> C)          |
+| **Complexity** | Simple Chatbots, Q&A    | Agents that fix their own mistakes |
+| **Control**    | Standard Pipeline       | Fine-grained State Control         |
+| **Best For**   | Getting started quickly | Building autonomous Agents         |
