@@ -221,9 +221,159 @@ _Hum kaise napte hai ki code "Fast" hai ya "Slow"? Seconds mein nahi, "Steps" me
 
 ---
 
+## 💡 Key Comparisons (Quick Revision)
+
+### 1. Lists vs. Dictionaries
+
+- **Lists**: Jab tumhe items ka **order** maintain karna ho. Search karne mein time lagta hai ($O(n)$) kyunki ek-ek karke check karna padta hai.
+- **Dictionaries**: Jab tumhe **fast lookup** chahiye. Key dalo aur value turant nikalo ($O(1)$). Ye memory zyada leti hain par speed super fast deti hain.
+
+### 2. Stack vs. Queue
+
+- **Stack (LIFO)**: "Last In, First Out". Jo aakhri mein aaya, wo pehle jayega. Example: Browser ka 'Back' button ya 'Undo' feature.
+- **Queue (FIFO)**: "First In, First Out". Jo pehle aaya, wo pehle jayega. Example: Ticket counter ki line ya printer mein bheje gaye documents.
+
+### 3. Linear Search vs. Binary Search
+
+- **Linear Search**: Har item ko check karta hai. Slow hai par kisi bhi random list pe chal jata hai.
+- **Binary Search**: Sirf **Sorted** list pe chalta hai. Ye har step pe search area ko aadha (half) kar deta hai, isliye bade data ke liye ye Linear Search se hazaron guna fast hai.
+
+### 4. Big O (Scalability)
+
+- Ye batata hai ki agar data 10 items se badhkar 1 million ho jaye, toh tumhara code kitna "load" lega.
+- **O(1)** aur **O(log n)** hamesha best hote hain. **O(n²)** se bachna chahiye kyunki data badhne par ye code ko hang kar sakta hai.
+
+---
+
 ## 🎯 Summary Checklist
 
 - [ ] **Lists** vs **Dictionaries** ka farak samjho.
 - [ ] **Stack** (Plates) vs **Queue** (Line) ka concept clear karo.
 - [ ] Samjho kyu **Binary Search** Linear Search se tej hai.
 - [ ] **Big O** (Time Complexity) ka basic idea lo ki code kitna scalable hai.
+
+---
+
+## 🚀 Part 4: Common Coding Interview Patterns (LeetCode Style)
+
+_Interview mein aksar pooche jane wale sawal aur unka smart solution._
+
+### 1. Two Sum (Hash Map)
+
+**Sawal**: Ek array mein do numbers dhundo jinka sum ek `target` ke barabar ho.
+
+```cpp
+#include <vector>
+#include <unordered_map>
+
+std::vector<int> twoSum(std::vector<int>& nums, int target) {
+    std::unordered_map<int, int> prevMap; // value : index
+    for (int i = 0; i < nums.size(); i++) {
+        int diff = target - nums[i];
+        if (prevMap.find(diff) != prevMap.end()) {
+            return {prevMap[diff], i}; // Mil gaya!
+        }
+        prevMap[nums[i]] = i;
+    }
+    return {};
+}
+```
+
+**Explanation**: Bruteforce ($O(n^2)$) ki jagah hum **unordered_map** use karte hain. Har number ke liye check karte hain ki uska "partner" (`target - n`) pehle mil chuka hai ya nahi. Isse complexity $O(n)$ ho jati hai.
+
+### 2. Valid Parentheses (Stack)
+
+**Sawal**: Check karo ki brackets `()[]{}` sahi sequence mein band ho rahe hain ya nahi.
+
+```cpp
+#include <stack>
+#include <unordered_map>
+#include <string>
+
+bool isValid(std::string s) {
+    std::stack<char> st;
+    std::unordered_map<char, char> closeToOpen = {{')', '('}, {'}', '{'}, {']', '['}};
+
+    for (char c : s) {
+        if (closeToOpen.count(c)) { // Agar closing bracket hai
+            if (!st.empty() && st.top() == closeToOpen[c]) {
+                st.pop();
+            } else {
+                return false;
+            }
+        } else {
+            st.push(c); // Opening bracket hai toh push karo
+        }
+    }
+    return st.empty();
+}
+```
+
+**Explanation**: Hum **stack** ka use karte hain. Jab opening bracket mile toh push karo, aur jab closing mile toh check karo ki stack ke top pe uska sahi pair hai ya nahi.
+
+### 3. Reverse a Linked List
+
+**Sawal**: Ek singly linked list ko reverse (ulta) kar do.
+
+```cpp
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
+ListNode* reverseList(ListNode* head) {
+    ListNode* prev = nullptr;
+    ListNode* curr = head;
+
+    while (curr) {
+        ListNode* nxt = curr->next; // Agla node save karo
+        curr->next = prev;         // Pointer ulta ghumao
+        prev = curr;               // Prev ko aage badhao
+        curr = nxt;                // Curr ko aage badhao
+    }
+    return prev;
+}
+```
+
+**Explanation**: Isme hum teen pointers (`prev`, `curr`, `nxt`) ka khel khelte hain. Har node ka `next` pointer pichle node ki taraf point karwa dete hain.
+
+### 4. Find the Missing Number
+
+**Sawal**: 1 se n tak ki list mein ek number missing hai, use dhundo.
+
+```cpp
+#include <vector>
+#include <numeric>
+
+int findMissing(std::vector<int>& nums, int n) {
+    long long expectedSum = (long long)n * (n + 1) / 2;
+    long long actualSum = std::accumulate(nums.begin(), nums.end(), 0LL);
+    return (int)(expectedSum - actualSum);
+}
+```
+
+**Explanation**: Math ka formula use karo ($n*(n+1)/2$) total sum nikalne ke liye. Phir array ke saare numbers ko minus kar do, jo bachega wahi missing number hai.
+
+## ⚡ Concurrency vs. Parallelism (Asli Farq)
+
+Log aksar in dono mein confuse ho jate hain, par inka matlab kaafi alag hai:
+
+### 1. Concurrency (Dealing with many things)
+
+- **Concept**: Jab ek hi CPU core multiple tasks ke beech mein itni jaldi switch karta hai ki lagta hai sab ek saath chal rahe hain. Isse "Context Switching" kehte hain.
+- **Analogy**: Ek waiter jo 3 tables handle kar raha hai. Wo pehle Table A ka order leta hai, phir Table B ko pani deta hai, phir Table C ka bill lata hai. Wo ek waqt pe ek hi kaam kar raha hai, par multiple tasks ko "manage" kar raha hai.
+- **Goal**: Responsiveness badhana (taki koi task wait na kare).
+
+### 2. Parallelism (Doing many things)
+
+- **Concept**: Jab multiple CPU cores ka use karke tasks ko sach mein ek hi time (simultaneously) par execute kiya jata hai.
+- **Analogy**: Ek restaurant mein 3 alag-alag waiters hain. Teeno apne-apne table ko ek hi time par serve kar rahe hain. Yahan kaam sach mein ek saath ho raha hai.
+- **Goal**: Speed aur throughput badhana (kaam jaldi khatam karna).
+
+| Feature       | Concurrency                               | Parallelism                               |
+| :------------ | :---------------------------------------- | :---------------------------------------- |
+| **Main Idea** | Tasks ko manage karna (Dealing).          | Tasks ko execute karna (Doing).           |
+| **Hardware**  | Single core CPU pe bhi ho sakta hai.      | Multi-core processor zaroori hai.         |
+| **Execution** | Ek ke baad ek (Switching).                | Ek saath (Simultaneous).                  |
+| **Example**   | Browser mein music sunna aur code likhna. | Video rendering ya heavy data processing. |
