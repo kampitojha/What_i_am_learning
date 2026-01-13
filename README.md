@@ -27,8 +27,6 @@ This repo is just a living document that will grow with me. Sometimes messy, som
 What_i_am_learning/
 │
 ├── README.md         (The file you're reading right now)
-├── Backend.md        (Everything backend related)
-├── Frontend.md       (Frontend journey)
 └── [More topics as I learn...]
 ```
 
