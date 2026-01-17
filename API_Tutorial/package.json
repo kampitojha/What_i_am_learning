@@ -1,0 +1,17 @@
+{
+  "name": "api_tutorial",
+  "version": "1.0.0",
+  "description": "Is folder mein hum seekhenge ki API kaise banti hai aur JWT (JSON Web Token) ka asli kaam kya hota hai.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  }
+}
