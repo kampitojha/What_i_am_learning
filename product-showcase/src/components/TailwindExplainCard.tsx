@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Heart, Share2, MessageCircle } from 'lucide-react';
 
 const TailwindExplainCard = () => {

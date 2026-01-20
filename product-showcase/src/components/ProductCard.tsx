@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Heart } from 'lucide-react';
 
-const ProductCard = ({ image, category, title, price }) => {
+interface ProductProps {
+  image: string;
+  category: string;
+  title: string;
+  price: number;
+}
+
+const ProductCard = ({ image, category, title, price }: ProductProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   return (
