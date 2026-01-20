@@ -1,0 +1,51 @@
+name: Main CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  # Job for Product Showcase Project
+  product-showcase-ci:
+    name: Product Showcase CI
+    runs-on: ubuntu-latest
+
+    # Only run this job if files in product-showcase change
+    # (Optional optimization, but good practice)
+    # defaults:
+    #   run:
+    #     working-directory: ./product-showcase
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ./product-showcase/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: ./product-showcase
+        run: npm ci
+
+      - name: Run Linting
+        working-directory: ./product-showcase
+        run: npm run lint --if-present
+
+      - name: Build Project
+        working-directory: ./product-showcase
+        run: npm run build
+
+  # Example Job for other projects (if needed later)
+  # mongodb-demo-ci:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #     - run: npm install
+  #       working-directory: ./mongodb-demo
