@@ -57,5 +57,26 @@ app.get('/api/posts', verify, (req, res) => {
     });
 });
 
+// 4. Shop Categories Endpoint (Jo image aapne dikhayi)
+const spicesData = require('./spices_data.json');
+
+app.get('/api/categories/spices', (req, res) => {
+    // Real User Scenario: 
+    // Frontend request karta hai: "Mujhe Spices tab ka data do"
+    
+    // Backend logic:
+    // 1. Database se check karo ki 'Spices' category mein kya kya hai.
+    // 2. Unka count nikalo.
+    // 3. Response JSON bana ke bhej do.
+
+    res.json({
+        success: true,
+        message: "Categories fetched successfully",
+        totalCategories: spicesData.length,
+        timestamp: new Date().toISOString(),
+        data: spicesData
+    });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Bhai Server chal raha hai at http://localhost:${PORT}`));

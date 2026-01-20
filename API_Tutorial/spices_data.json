@@ -1,0 +1,29 @@
+[
+  {
+    "id": "cat_blended_01",
+    "title": "Blended Spices",
+    "description": "Perfectly mixed spices for authentic taste",
+    "productCount": 31,
+    "imageUrl": "/images/categories/blended_spices.jpg",
+    "slug": "blended-spices",
+    "isActive": true
+  },
+  {
+    "id": "cat_powdered_02",
+    "title": "Powdered Spices",
+    "description": "Fine grind spices for daily cooking",
+    "productCount": 24,
+    "imageUrl": "/images/categories/powdered_spoons.jpg",
+    "slug": "powdered-spices",
+    "isActive": true
+  },
+  {
+    "id": "cat_whole_03",
+    "title": "Whole Spices",
+    "description": "Raw and aromatic whole spices",
+    "productCount": 16,
+    "imageUrl": "/images/categories/whole_spices.jpg",
+    "slug": "whole-spices",
+    "isActive": true
+  }
+]
