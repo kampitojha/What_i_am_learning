@@ -2,6 +2,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import ProductCard from "./components/ProductCard";
 import TailwindExplainCard from "./components/TailwindExplainCard";
 import CounterDemo from "./components/CounterDemo";
+import EffectComparison from "./components/EffectComparison";
 
 const products = [
   {
@@ -86,6 +87,11 @@ function App() {
             Custom Hook Demo
           </h2>
           <CounterDemo />
+        </div>
+
+        {/* Effect Comparison Section */}
+        <div className="mb-16">
+          <EffectComparison />
         </div>
 
         {/* CTA Button */}
