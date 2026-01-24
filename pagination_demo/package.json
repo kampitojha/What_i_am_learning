@@ -1,0 +1,14 @@
+{
+  "name": "pagination-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed_db.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.7",
+    "cors": "^2.8.5"
+  }
+}
