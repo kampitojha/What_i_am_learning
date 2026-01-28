@@ -1,0 +1,26 @@
+let event = new Promise((resolve, reject) => {
+  let name = "Pedro";
+
+  if (name === "Pedro") {
+    resolve(name);
+  } else {
+    reject("Name galat hai");
+  }
+});
+
+
+
+
+
+ let event = new promise ((resolve, reject) => {
+    let name = "Pedro";
+
+    if (name === "Pedro"){
+        resolve(name)
+    }else {
+        reject("Name galat hai")
+    }
+     })
+
+
+
