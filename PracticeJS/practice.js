@@ -51,3 +51,68 @@ try {
 } catch (err) {
     console.log('Invalid Token:', err.message);
 }
+
+
+
+console.log("kampit")
+try()
+catch{}
+
+
+const nestedArray = [1, [2, [3, 4], 5], 6];
+
+// 1. Without inbuilt (Recursive approach)
+function flattenManual(arr) {
+    let result = [];
+    arr.forEach(item => {
+        if (Array.isArray(item)) {
+            result.push(...flattenManual(item));
+        } else {
+            result.push(item);
+        }
+    });
+    return result;
+}
+
+console.log('Manual Flatten:', flattenManual(nestedArray));
+
+// 2. With inbuilt
+const flattenedInbuilt = nestedArray.flat(Infinity);
+console.log('Inbuilt Flatten:', flattenedInbuilt);
+
+
+function flattenArray(arr){
+    if(Array.isArray(item)) {
+        result.push(...flattenArray(item));
+    } else {
+        result.push(item);
+    }
+    return result;
+}
+
+
+
+function flattenArray(arr){
+    if(Array.isArray)(item){
+        result.push(...flattenrArray(item));
+    } else {
+        result.push(item);
+    }
+    return result;
+}
+// This line calls the flattenArray function with nestedArray as an argument and prints the returned flattened array to the console.
+console.log(flattenArray(nestedArray));
+
+
+// let promise = new Promise((resolve, reject) => {
+//   resolve("Success");
+// });
+
+// promise.then(res => console.log(res));
+
+
+let promise = new Promise ((resolve, reject) => {
+    resolve("success");
+});
+
+[rp,]
