@@ -37,3 +37,11 @@ When a user provides a file or pattern argument:
 4. Output findings using the format specified in the guidelines
 
 If no files specified, ask the user which files to review.
+
+
+
+function add(a,b){
+  return a+b;
+}
+
+add(1,2);

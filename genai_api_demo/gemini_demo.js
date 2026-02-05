@@ -34,3 +34,45 @@ async function runGeminiDemo() {
 }
 
 runGeminiDemo();
+
+
+try {
+    const result = await model.generateContent(userPrompt);
+    const response = await result.response;
+} catch(error){
+    console.error("Error connecting to Gemini:", error.message);
+    if (error.message.includes("API key")) {
+        console.log("Hint: Make sure you put your valid API key in the .env file!");
+    }
+}
+
+
+
+for(i = 0; i < 10; i++){
+    console.log(i);
+}                   
+
+console.log("Hello World");
+
+try{
+    console.log("Hello World");
+}catch(error){
+    console.log(error);
+}
+
+
+const promise = new Promise ((resolve,reject) => {
+    if(true){
+        resolve("success")
+    }else{
+        reject("failure")
+    }
+})
+
+promise.then((value) => {
+    console.log(value);
+})
+.catch((error) => {
+    console.log(error);
+})
+

@@ -115,4 +115,63 @@ let promise = new Promise ((resolve, reject) => {
     resolve("success");
 });
 
-[rp,]
+promise.then(res => console.log(res));
+
+function flattenArray(arr) {
+    let result = [];
+    arr.forEach(item => {
+        if(Array.isArray(item)){
+            result.push(...flattenArray(item));
+        } else {
+            result.push (item);
+        }
+    })
+    return result;
+}
+
+
+// function debounce(fn, delay) {
+//   let timer;
+//   return function () {
+//     clearTimeout(timer);
+//     timer = setTimeout(fn, delay);
+//   };
+// }
+
+function debounce (fn, delay) {
+    let timer;
+    return function () {
+        clearTimeout(timer);
+        setTimeout(fn, delay);
+    }
+}
+/api/users?version=2
+
+
+/api/users?version=2&role=admin
+
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+// Versioned routes
+app.use("/api/v1", require("./routes/v1/user.routes"));
+app.use("/api/v2", require("./routes/v2/user.routes"));
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+app.use("/api/v1",require("./routes/v1/user.routes"));
+
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
+})
