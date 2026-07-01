@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "email": "bob@example.com",
+      "role": "editor",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Charlie Brown",
+      "email": "charlie@example.com",
+      "role": "viewer",
+      "active": false
+    },
+    {
+      "id": 4,
+      "name": "Diana Prince",
+      "email": "diana@example.com",
+      "role": "editor",
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Ethan Hunt",
+      "email": "ethan@example.com",
+      "role": "viewer",
+      "active": true
+    }
+  ],
+  "projects": [
+    {
+      "id": 101,
+      "title": "Learning React",
+      "status": "in-progress",
+      "tags": ["frontend", "javascript", "react"]
+    },
+    {
+      "id": 102,
+      "title": "Node.js API",
+      "status": "completed",
+      "tags": ["backend", "nodejs", "api"]
+    },
+    {
+      "id": 103,
+      "title": "Python ML Pipeline",
+      "status": "planned",
+      "tags": ["python", "machine-learning", "data"]
+    }
+  ]
+}
