@@ -8,7 +8,6 @@ const REFRESH_TOKEN_SECRET = '';
 // 2. Mock User Data (Payload)
 const user = {
     username: 'learning_user',
-    role: 'admin'
 };
 
 // 3. Function to Generate Access Token (Short-lived, e.g., 15 minutes)
