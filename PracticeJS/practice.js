@@ -1,1 +1,177 @@
-jaha
+const jwt = require('jsonwebtoken');
+
+// 1. Define Secret Keys
+// In a real app, these should be in environment variables (process.env.ACCESS_TOKEN_SECRET)
+const ACCESS_TOKEN_SECRET = '';
+const REFRESH_TOKEN_SECRET = '';
+
+// 2. Mock User Data (Payload)
+const user = {
+    id: '12345',
+    username: 'learning_user',
+    role: 'admin'
+};
+
+// 3. Function to Generate Access Token (Short-lived, e.g., 15 minutes)
+function generateAccessToken(userPayload) {
+    // payload: data you want to store in token
+    // secret: key used to sign the token
+    // options: expiresIn
+    return jwt.sign(userPayload, { expiresIn: '15m' });
+}
+
+// 4. Function to Generate Refresh Token (Long-lived, e.g., 7 days)
+function generateRefreshToken(userPayload) {
+    return jwt.sign(userPayload, REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+}
+
+// --- execution ---
+
+console.log('--- Generating JWT Tokens ---');
+
+// Generate Tokens
+const accessToken = generateAccessToken(user);
+const refreshToken = generateRefreshToken(user);
+
+console.log('\n1. Access Token (JWT):');
+console.log(accessToken);
+
+console.log('\n2. Refresh Token (JWT):');
+console.log(refreshToken);
+
+console.log('\n3. Bearer Token Format (for Authorization header):');
+console.log(`Authorization: Bearer ${accessToken}`);
+
+
+// --- Verification Example (How server checks it) ---
+console.log('\n--- Verifying Access Token ---');
+try {
+    const decoded = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
+    console.log('Token is Valid! Decoded Payload:', decoded);
+} catch (err) {
+    console.log('Invalid Token:', err.message);
+}
+
+
+
+console.log("kampit")
+try()
+catch{}
+
+
+const nestedArray = [1, [2, [3, 4], 5], 6];
+
+// 1. Without inbuilt (Recursive approach)
+function flattenManual(arr) {
+    let result = [];
+    arr.forEach(item => {
+        if (Array.isArray(item)) {
+            result.push(...flattenManual(item));
+        } else {
+            result.push(item);
+        }
+    });
+    return result;
+}
+
+console.log('Manual Flatten:', flattenManual(nestedArray));
+
+// 2. With inbuilt
+const flattenedInbuilt = nestedArray.flat(Infinity);
+console.log('Inbuilt Flatten:', flattenedInbuilt);
+
+
+function flattenArray(arr){
+    if(Array.isArray(item)) {
+        result.push(...flattenArray(item));
+    } else {
+        result.push(item);
+    }
+    return result;
+}
+
+
+
+function flattenArray(arr){
+    if(Array.isArray)(item){
+        result.push(...flattenrArray(item));
+    } else {
+        result.push(item);
+    }
+    return result;
+}
+// This line calls the flattenArray function with nestedArray as an argument and prints the returned flattened array to the console.
+console.log(flattenArray(nestedArray));
+
+
+// let promise = new Promise((resolve, reject) => {
+//   resolve("Success");
+// });
+
+// promise.then(res => console.log(res));
+
+
+let promise = new Promise ((resolve, reject) => {
+    resolve("success");
+});
+
+promise.then(res => console.log(res));
+
+function flattenArray(arr) {
+    let result = [];
+    arr.forEach(item => {
+        if(Array.isArray(item)){
+            result.push(...flattenArray(item));
+        } else {
+            result.push (item);
+        }
+    })
+    return result;
+}
+
+
+// function debounce(fn, delay) {
+//   let timer;
+//   return function () {
+//     clearTimeout(timer);
+//     timer = setTimeout(fn, delay);
+//   };
+// }
+
+function debounce (fn, delay) {
+    let timer;
+    return function () {
+        clearTimeout(timer);
+        setTimeout(fn, delay);
+    }
+}
+/api/users?version=2
+
+
+/api/users?version=2&role=admin
+
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+// Versioned routes
+app.use("/api/v1", require("./routes/v1/user.routes"));
+app.use("/api/v2", require("./routes/v2/user.routes"));
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+app.use("/api/v1",require("./routes/v1/user.routes"));
+
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
+})
