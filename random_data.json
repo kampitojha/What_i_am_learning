@@ -1,28 +1,77 @@
 {
-  "timestamp": "2026-07-02T12:22:54+05:30",
+  "timestamp": "2026-07-02T12:57:16+05:30",
   "random_id": "c1b504e9-5cf8-410a-9d22-0d6ff8be9232",
   "items": [
     {
       "id": 1,
       "name": "Random Item A",
       "value": 42.5,
-      "status": "active"
+      "status": "active",
+      "tags": ["alpha", "primary"]
     },
     {
       "id": 2,
       "name": "Random Item B",
       "value": 108.9,
-      "status": "pending"
+      "status": "pending",
+      "tags": ["beta"]
     },
     {
       "id": 3,
       "name": "Random Item C",
       "value": 17.1,
-      "status": "completed"
+      "status": "completed",
+      "tags": ["gamma", "archive"]
+    },
+    {
+      "id": 4,
+      "name": "Random Item D",
+      "value": 75.3,
+      "status": "active",
+      "tags": ["delta", "new"]
+    },
+    {
+      "id": 5,
+      "name": "Random Item E",
+      "value": 230.0,
+      "status": "pending",
+      "tags": ["epsilon", "priority"]
     }
   ],
+  "users": [
+    {
+      "user_id": "usr_001",
+      "username": "alice_dev",
+      "email": "alice@example.com",
+      "role": "admin",
+      "joined": "2025-01-15"
+    },
+    {
+      "user_id": "usr_002",
+      "username": "bob_coder",
+      "email": "bob@example.com",
+      "role": "member",
+      "joined": "2025-03-22"
+    },
+    {
+      "user_id": "usr_003",
+      "username": "charlie_qa",
+      "email": "charlie@example.com",
+      "role": "tester",
+      "joined": "2025-06-10"
+    }
+  ],
+  "stats": {
+    "total_items": 5,
+    "active": 2,
+    "pending": 2,
+    "completed": 1,
+    "average_value": 94.76,
+    "last_updated": "2026-07-02T12:57:16+05:30"
+  },
   "metadata": {
     "generated_by": "Antigravity AI",
-    "purpose": "Demonstrating branch push with random data"
+    "purpose": "Demonstrating branch push with random data",
+    "version": "2.0"
   }
 }
