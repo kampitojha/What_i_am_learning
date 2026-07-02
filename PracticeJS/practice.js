@@ -7,7 +7,6 @@ const REFRESH_TOKEN_SECRET = '';
 
 // 2. Mock User Data (Payload)
 const user = {
-    id: '12345',
     username: 'learning_user',
     role: 'admin'
 };
