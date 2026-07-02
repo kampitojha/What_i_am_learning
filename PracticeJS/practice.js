@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 
 // 1. Define Secret Keys
 // In a real app, these should be in environment variables (process.env.ACCESS_TOKEN_SECRET)
-const ACCESS_TOKEN_SECRET = 'your_access_token_secret_key_123';
-const REFRESH_TOKEN_SECRET = 'your_refresh_token_secret_key_456';
+const ACCESS_TOKEN_SECRET = '';
+const REFRESH_TOKEN_SECRET = '';
 
 // 2. Mock User Data (Payload)
 const user = {
@@ -17,7 +17,7 @@ function generateAccessToken(userPayload) {
     // payload: data you want to store in token
     // secret: key used to sign the token
     // options: expiresIn
-    return jwt.sign(userPayload, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+    return jwt.sign(userPayload, { expiresIn: '15m' });
 }
 
 // 4. Function to Generate Refresh Token (Long-lived, e.g., 7 days)
