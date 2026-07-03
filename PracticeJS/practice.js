@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+dummy
+
 // 1. Define Secret Keys
 // In a real app, these should be in environment variables (process.env.ACCESS_TOKEN_SECRET)
 const ACCESS_TOKEN_SECRET = '';
