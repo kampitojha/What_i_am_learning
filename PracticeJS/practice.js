@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+dummy data
+
 // 1. Define Secret Keys
 // In a real app, these should be in environment variables (process.env.ACCESS_TOKEN_SECRET)
 const ACCESS_TOKEN_SECRET = '';
@@ -7,9 +9,7 @@ const REFRESH_TOKEN_SECRET = '';
 
 // 2. Mock User Data (Payload)
 const user = {
-    id: '12345',
     username: 'learning_user',
-    role: 'admin'
 };
 
 // 3. Function to Generate Access Token (Short-lived, e.g., 15 minutes)
